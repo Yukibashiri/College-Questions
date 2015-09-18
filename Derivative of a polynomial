@@ -4,7 +4,7 @@
 #include <math.h>
 int main (void)
 {
-     setlocale(LC_ALL, "Portuguese"); // caracteres e acentuação da língua portuguesa.
+     setlocale(LC_ALL, "Portuguese"); // caracteres e acentuação da língua portuguesa. 
      int grau,contador=0;
      printf ("\nInforme o valor do polinomio de maior grau:  "); // Mensagem mostrada ao usuario, assim ele entenderá o que é para fazer.
      scanf ("%d",&grau);             // guarda o valor fornecio pelo usuario.
