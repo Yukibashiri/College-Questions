@@ -1,11 +1,17 @@
-//começa aqui
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <math.h>
+// Derivative of a polynomial
+#include <stdio.h>              //
+#include <stdlib.h>             //
+#include <locale.h>             // bibliotecas utilizadas.
+#include <math.h>               //
 int main (void)
 {
-     setlocale(LC_ALL, "Portuguese"); // caracteres e acentuação da língua portuguesa. 
+     setlocale(LC_ALL, "Portuguese"); // caracteres e acentuação da língua portuguesa.
+    printf ("CASE:\nTECNOLOGIA: PARA DADOS, MATERIAIS E PROCESSOS\n");
+    printf ("\n Professor: José Wilson Silva Costa");
+    printf ("\n Aluno: Mario Damião Caparroz Remistico Junior\n");
+    printf ("\n\n\n\n--------------Pressione qualquer tecla para começar o programa---------------");
+    getch();
+    system("cls");
      int grau,contador=0;
      printf ("\nInforme o valor do polinomio de maior grau:  "); // Mensagem mostrada ao usuario, assim ele entenderá o que é para fazer.
      scanf ("%d",&grau);             // guarda o valor fornecio pelo usuario.
@@ -76,7 +82,7 @@ int main (void)
     }
     while (contador <= grau);
     contador = 0;                                           // mais um resete.
-    printf ("\n     Derivado:  f(x)':  ");
+    printf ("\n     Derivado:  f'(x):  ");
     do{
         if (exp[contador] > 0){       // Ele ira escrever o polinomio completo para o usuario ler, só que agora derivado.
                 if (operacao[contador] == '+'&& contador == 0){  //quando o monomio de maior grau for positivo ele escondera o sinal
@@ -92,11 +98,11 @@ int main (void)
         contador = (contador + 1);
        }
     while (contador <= grau);
-    char decisao[3];                // variavel criada para guardar 3 caracteres, sera utilizado para guardar a resposta do usuario sobre a continuidade do alg.
-    printf ("\n\n Gostaria de aplicar o valor de X?\n Escreva sim ou nao:  ");
+    int decisao;                // variavel criada para guardar 3 caracteres, sera utilizado para guardar a resposta do usuario sobre a continuidade do alg.
+    printf ("\n\n Gostaria de aplicar o valor de X?\n Escreva 1 - sim ou 2 - nao:  ");
     fflush(stdin);
-    scanf ("%s",&decisao);
-    if (decisao=='sim'||'Sim'){
+    scanf ("%d",&decisao);
+    if (decisao == 1){
         system("cls");
         int x;                      // Criar a variavel para guardar o valor X.
         printf ("Insira o valor de X:  ");
@@ -140,7 +146,7 @@ int main (void)
             contador = contador + 1;
        }
        while (contador <= grau);
-       printf ("\n\n O resultado é: f(%d)': %d\n\n",x,resfinal);   // Mostra o resultado final ao usuario.
+       printf ("\n\n O resultado é: f'(%d): %d\n\n",x,resfinal);   // Mostra o resultado final ao usuario.
     }
 return 0;
 }
