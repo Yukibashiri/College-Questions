@@ -44,15 +44,15 @@ int main (void)
 {
     setlocale(LC_ALL, "Portuguese"); // caracteres e acentuação da língua portuguesa.
     info();
-    system("cls");
     //****************************************************************************************************//
     //************************************VARIAVEIS, ATRIBUIÇÕES ITENS MENU****************************************//
     float comitem[20] = {0.05,0.05,0.07,0.10,0.10,0.10,0.10,0.15,0.10,0.12,0.15,0.15,0.10,0.10,0.15,0.15,0.15,0.15,0.15,0.15};
     // *********************************************FIM ITENS MENU******************************************************//
-    int cont,opcao,cont2;
+    int cont,opcao,decisao;
     do{
         printf ("\n[1] CARDAPIO\n[2] INFO\n[3] BLABLABLA\n");
         scanf ("%d", &opcao);
+        system("cls");
         switch (opcao){
             case (1):
                  cardapio(cont);
@@ -62,14 +62,14 @@ int main (void)
                  break;
             case (0):
                  printf ("TEM CERTEZA QUE GOSTARIA DE FECHAR O PROGRAMA?\n 1 - SIM\n 2 - NÃO\n Digite: ");
-                 scanf("%d",cont2);
-                 if (cont2 != 1){
-                    opcao = 9;
+                 scanf("%d",decisao);
+                 if (decisao!=1){
+                    opcao = 1;
+                    system ("cls");
                  }
                  break;
         }
     }
     while (opcao != 0);
-    printf ("Programa será encerrado.");
 return 0;
 }
