@@ -17,9 +17,7 @@ void info(){
    printf ("CASE: %s  \nAluno: %s \nProfessor: %s \n",caso,aluno,professor);  // Titulo do programa
    parada();
    return;
-}    printf ("\nPressione qualquer botão para voltar ao menu do programa.");
-    getch();
-    system("cls");
+}
 //FUNÇÃO CARDAPIO
 void cardapio(int cont){
     char nomeitem[20][50] = {"Cerveja 600ml","Refrigerante Lata","Água mineral 300ml","Suco (Variados)","Suco com leite","Água de coco","Peixada","Camarão no alho e óleo",
@@ -62,10 +60,16 @@ int main (void)
             case (2):
                  info();
                  break;
+            case (0):
+                 printf ("TEM CERTEZA QUE GOSTARIA DE FECHAR O PROGRAMA?\n 1 - SIM\n 2 - NÃO\n Digite: ");
+                 scanf("%d",cont2);
+                 if (cont2 != 1){
+                    opcao = 9;
+                 }
+                 break;
         }
-
     }
     while (opcao != 0);
-
+    printf ("Programa será encerrado.");
 return 0;
 }
