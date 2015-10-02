@@ -62,7 +62,7 @@ int main (void)
                  break;
             case (0):
                  printf ("TEM CERTEZA QUE GOSTARIA DE FECHAR O PROGRAMA?\n 1 - SIM\n 2 - NÃO\n Digite: ");
-                 scanf("%d",decisao);
+                 scanf("%d",&decisao);
                  if (decisao!=1){
                     opcao = 1;
                     system ("cls");
