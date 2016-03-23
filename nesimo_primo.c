@@ -3,6 +3,9 @@
 #include <locale.h>
 #define CRIADOR "Mario D."
 
+
+// FUNÇÃO DE CALULO \\
+
 int calculo_primo (int numero){
     int i,primo=1,contador=1;  // variavel primo utilizada como teste lógico; i = divisor; contador = dividendo.
     do{
@@ -20,11 +23,13 @@ int calculo_primo (int numero){
     return contador;        // retorna contador que cocntem o valor do n-ésimo primo.
 }
 
+ // FUNÇÃO PRINCIPAL \\
+ 
 void main (void){
-	setlocale (LC_ALL, "Portuguese");   //Permitir Acentuação
-	int numero,nesimo_primo;
-	printf ("\n Informe o n-ésimo número primo que desejas saber: ");
-	scanf ("%d",&numero);
+    setlocale (LC_ALL, "Portuguese");   //Permitir Acentuação
+    int numero,nesimo_primo;
+    printf ("\n Informe o n-ésimo número primo que desejas saber: ");
+    scanf ("%d",&numero);
     nesimo_primo = calculo_primo(numero);
     printf ("\n O %dº número primo é: %d.\n",numero,nesimo_primo);
     system ("PAUSE");
