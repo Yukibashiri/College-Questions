@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -56,7 +57,7 @@ int main (){
     setlocale (LC_ALL,"Portuguese");
     char tabuleiro[8][8];
     int movimento[8][8]= {'0'};
-    int i,j,linha,coluna,aux=1,decisao;
+    int i,j,linha,coluna,aux=1,decisao,direcao;
     char bloco = 'X';
     for (j=0;j<8;j++){
         for (i=0;i<8;i++){
@@ -141,7 +142,25 @@ int main (){
             }else{
                 printf ("Descer ? ");
             }
-            
+            scanf ("%d",&aux);
+            printf ("\nPela esquerda<1> ou pela direita<2>? ");
+            scanf ("%d",&direcao);
+            if(direcao == 1){
+                i = linha - (1*aux);
+                j = coluna -(1*aux);
+            }
+            else{
+               i = linha +1*aux;
+               j = coluna +1*aux;
+            }
+            if ((movimento[i][j] == 1 ||movimento[i][j] == 3) || i <0 || (j <0 || j >7)){
+                system("cls");
+                printf ("\n\nErro!! A Peça não pode sair do tabuleiro ou sobrepor uma peça de mesma cor.\nTente outra jogada.\n");
+            }
+            else{
+                movimento[linha][coluna] = 0;
+                movimento[i][j] = 3;
+            }
             break;
         case 4:
             break;
