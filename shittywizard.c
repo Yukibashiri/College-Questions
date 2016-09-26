@@ -9,7 +9,7 @@ typedef struct node{
 }node;
 
 void menuApresentacao(){
-	printf ("1- Criar Arvore\n2- Inserir NÛ\n3- Ver arvore\n4- Remover nÛ\n5 - Peso\\n6 - em Ordem\n9-Sair\n R: ");
+	printf ("1- Criar Arvore\n2- Inserir N√≥\n3- Pr√©-Ordem\n4- Remover n√≥\n5 - Peso\n6 - In-Ordem\n7 - N√≥s com filho\n8 - Altura da Arvore\n10 - P√≥s Ordem\n11- Contar os n√≥s folhas\n9-Sair\n R: ");
 }
 
 void criarArvore(node **raiz){
@@ -43,7 +43,7 @@ void emOrdem(node **raiz) {
 
 void removerNode(node **raiz, int numero){
     if((*raiz) == NULL){
-        printf ("\nNÛ n„o existe ou j· foi removido!");
+        printf ("\nN√≥ n√£o existe ou j√° foi removido!");
     }else if(numero < (*raiz)->val){
         removerNode(&(*raiz)->sae, numero);
     }else if(numero > (*raiz)->val){
@@ -62,7 +62,7 @@ void removerNode(node **raiz, int numero){
             (*raiz) = (*raiz)->sae;
             (*raiz)->ant = (aux)->ant;
             free(aux);
-        }else {/* nÛ tem os dois filhos: busca o sucessor */
+        }else {/* n√≥ tem os dois filhos: busca o sucessor */
             node *sucessor = (*raiz)->sad;
             while (sucessor->sae != NULL){
                 sucessor = &sucessor->sae;
@@ -73,9 +73,9 @@ void removerNode(node **raiz, int numero){
             node **antecessor = sucessor->ant;
             if ((*antecessor)->sae == (sucessor)){
                 printf ("\nala 1,");
-                sucessor->ant->sae = (sucessor)->sad; /* se sucessor for filho ‡ esquerda */
+                sucessor->ant->sae = (sucessor)->sad; /* se sucessor for filho √† esquerda */
              }else{
-                (*antecessor)->sad = (sucessor)->sad; /* se sucessor for filho ‡ direita */
+                (*antecessor)->sad = (sucessor)->sad; /* se sucessor for filho √† direita */
             }
             if (sucessor->sad!=NULL){
                 printf ("\nala 3");
@@ -109,14 +109,47 @@ void pesoArvore(node **raiz,int *x){
 }
 
 void nosComfilho(node **raiz,int *x){
-    printf ("\nVal de X: %d",*x);
-    *x += 1;
-    printf ("\nVal de X: %d",*x);
+    if (((*raiz)->sae != NULL) || ((*raiz)->sad != NULL))
+        (*x)++;
 	if((*raiz)->sae != NULL){
-		pesoArvore(&(*raiz)->sae, x);
+		nosComfilho(&(*raiz)->sae, x);
 	}
 	if((*raiz)->sad != NULL){
-		pesoArvore(&(*raiz)->sad, x);
+		nosComfilho(&(*raiz)->sad, x);
+	}
+}
+
+int alturaArv (node **raiz) {
+   if (*raiz == NULL)
+      return -1; // altura da √°rvore vazia
+   else {
+      int he = alturaArv (&(*raiz)->sae);
+      int hd = alturaArv (&(*raiz)->sad);
+      if (he < hd)
+        return hd + 1;
+      else
+        return he + 1;
+   }
+}
+
+void posArvore(node **raiz){
+	if((*raiz)->sae != NULL){
+		posArvore(&(*raiz)->sae);
+	}
+	if((*raiz)->sad != NULL){
+		posArvore(&(*raiz)->sad);
+	}
+    printf ("%d  ", (*raiz)->val);
+}
+
+void nosFolhas(node **raiz,int *x){
+    if (((*raiz)->sae == NULL) && ((*raiz)->sad == NULL))
+        (*x)++;
+	if((*raiz)->sae != NULL){
+		nosFolhas(&(*raiz)->sae, x);
+	}
+	if((*raiz)->sad != NULL){
+		nosFolhas(&(*raiz)->sad, x);
 	}
 }
 
@@ -131,44 +164,57 @@ void main (void){
 		system("cls");
 		switch(escolha){
 			case 1:
-						printf ("\nCriando nÛ raiz\n");
-						node *principal;
-						principal = malloc(sizeof(node));
-						criarArvore(principal);
+                    printf ("\nCriando n√≥ raiz\n");
+                    node raiz,*principal;
+                    principal = malloc(sizeof(node));
+                    principal = &raiz;
+                    criarArvore(principal);
 					break;
 			case 2:
-					printf ("\nInforme a chave do nÛ:  ");
+					printf ("\nInforme a chave do n√≥:  ");
     				scanf ("%d",&numero);
     				inserirNode(principal,principal,numero);
-    				printf ("\n NÛ inserido!\n");
+    				printf ("\n N√≥ inserido!\n");
     				break;
     		case 3:
     				printf ("Mostrando Arvore: \n");
     				visualizarArvore(principal);
     				break;
             case 4:
-                    printf ("\nInforme a chave do nÛ que deseja remover: ");
+                    printf ("\nInforme a chave do n√≥ que deseja remover: ");
                     scanf ("%d",&numero);
                     removerNode(principal,numero);
                     break;
     		case 5:
                     x = 0;
                     pesoArvore(principal,&x);
-    				printf ("\nPeso È: %d", x);
-    				break;
-    		case 7:
-                    x = 0;
-                    nosComfilho(principal,&x);
-    				printf ("\nnumero de nÛs com filhos È: %d", x);
+    				printf ("\nPeso √©: %d", x);
     				break;
             case 6:
     				printf ("Mostrando Arvore: \n");
     				emOrdem(principal);
     				break;
+    		case 7:
+                    x = 0;
+                    nosComfilho(principal,&x);
+    				printf ("\nnumero de n√≥s com filhos √©: %d", x);
+    				break;
+            case 8:
+                    printf ("\nAltura da arvore √©: %d",alturaArv(principal));
+                    break;
     		case 9:
     				printf ("\nEncerrando o Programa!");
     				break;
-		}
+            case 10:
+    				printf ("Mostrando Arvore: \n");
+    				posArvore(principal);
+    				break;
+    		case 11:
+                    x = 0;
+                    nosFolhas(principal,&x);
+    				printf ("\nExistem %d n√≥s folhas na arvore", x);
+    				break;
+        }
 		getch();
     }while(escolha != 9);
 }
